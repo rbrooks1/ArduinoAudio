@@ -23,5 +23,5 @@ ReadAudio.o: ReadAudio.cpp
 	@$(CC) $(CFLAGS) ReadAudio.cpp
 
 clean:
-	@rm $(PROGS)
-	@rm $(OBJS)
+	@rm -rf $(PROGS) || true
+	@rm -rf $(OBJS) || true

@@ -5,9 +5,32 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<cstring>
-#include<dirent.h>
+#include<unistd.h>
+#include<vector>
 
 using namespace std;
+
+void moveToNewFolder(vector<string> vec) {
+
+}
+
+void createChDirPath(string &directory, vector<string> &vec) {
+	char buffer[1000];
+	getcwd(buffer, 1000);
+	
+	string curPath = str(buffer);
+
+	string commonRoot = "";
+
+	// find common root
+	while (tempNewDir == tempCurDir) {
+		
+	}
+	
+	// move curPath back to common root
+
+	// move curPath to destination
+}
 
 void convToWSLPath(string &directory) {
 	string start = "/mnt/c/users/";
@@ -17,15 +40,10 @@ void convToWSLPath(string &directory) {
 }
 
 void goToDir(string directory) {
-	struct dirent *dp;
-	cout << directory << endl;
 	convToWSLPath(directory);
-	cout << directory << endl;
-	DIR *d = opendir(directory.c_str());
 
-	while (dp = readdir(d)) {
-		cout << dp << endl;
-	}
+	vector<string> vec;
+	createChDirPath(directory, vec);
 
-	closedir(d);
+	moveToNewFolder(vec);
 }
