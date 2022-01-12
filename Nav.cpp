@@ -15,12 +15,6 @@ void moveToNewFolder(vector<string> vec) {
 	for (string s : vec) {
 		chdir(s.c_str());
 	}
-
-	char buffer[1000];
-	getcwd(buffer, 1000);
-	cout << buffer << endl;
-
-	system("ls");
 }
 
 void createChDirPath(string &directory, vector<string> &vec) {
