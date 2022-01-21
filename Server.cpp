@@ -15,6 +15,6 @@ int main() {
 	getline(cin, dir);
 
 	goToDir(dir);
-	
+	system("ls");
 	return 0;
 }

@@ -8,6 +8,7 @@
 #include<algorithm>
 #include<unistd.h>
 #include<vector>
+#include<cctype>
 
 using namespace std;
 
@@ -44,8 +45,9 @@ void createChDirPath(string &directory, vector<string> &vec) {
 }
 
 void convToWSLPath(string &directory) {
-	string start = "/mnt/c/users/";
-	string sub = directory.substr(9, string::npos);
+	string start = "/mnt/" + directory.substr(0, 1) + "/";
+	start[5] = tolower(start[5]);
+	string sub = directory.substr(3, string::npos);
 
 	directory = start + sub;
 	replace(directory.begin(), directory.end(), '\\', '/');
