@@ -39,5 +39,6 @@ int main() {
 	findMp3(files);
 	remove("lspipe.txt");
 
+	system("ls");
 	return 0;
 }
