@@ -3,26 +3,24 @@
 #include<iostream>
 #include<stdio.h>
 #include<string.h>
-#include<fstream>
+#include<dirent.h>
+#include<unistd.h>
 #include"Nav.h"
 #include"ReadAudio.h"
 
 using namespace std;
 
 void findMp3 (vector<string> &files) {
-	system("ls > lspipe.txt");
-	ifstream file;
-	file.open("lspipe.txt", fstream::in);
-	
-	string fileName;
-	while (getline(file, fileName)) {
-		if (fileName.find(".mp3") != string::npos) {
-			files.push_back(fileName);
+	char buffer[1000];
+	if (auto dir = opendir(getcwd(buffer, 1000))) {
+		while (auto f = readdir(dir)) {
+			if (string(f->d_name).find(".mp3") != string::npos) {
+				files.push_back(f->d_name);
+			}
 		}
+
+		closedir(dir);
 	}
-
-	file.close();
-
 }
 
 int main() {
@@ -35,10 +33,7 @@ int main() {
 
 	// find mp3 files to play on arduino
 	vector<string> files;
-	system("touch lspipe.txt");
 	findMp3(files);
-	remove("lspipe.txt");
 
-	system("ls");
 	return 0;
 }
