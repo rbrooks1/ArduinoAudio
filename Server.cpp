@@ -35,5 +35,11 @@ int main() {
 	vector<string> files;
 	findMp3(files);
 
+	// open files one by one and send data to Arduino (client)
+	for (string f : files) {
+		cout << f << endl;
+		openFile(f);
+	}
+
 	return 0;
 }
